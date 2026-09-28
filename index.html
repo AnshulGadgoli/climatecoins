@@ -8,6 +8,18 @@
   </head>
   <body>
     <div id="root"></div>
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="display:none;"></div>
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+          pageLanguage: 'en',
+          includedLanguages: 'en,hi,mr,kn,ta,te,gu,pa,bn',
+          autoDisplay: false
+        }, 'google_translate_element');
+      }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script>
       window.addEventListener('error', function(e) {
         document.body.innerHTML += '<div style="color:red; font-family:monospace; padding:20px; z-index:9999; position:absolute; top:0; background:white; width:100%;">' + e.message + '<br>' + e.filename + ':' + e.lineno + '</div>';

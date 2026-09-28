@@ -1,4 +1,4 @@
-export type UserRole = 'FPO' | 'BUYER' | 'VERIFIER' | 'ADMIN' | null;
+export type UserRole = 'FPO' | 'DATACENTRE' | 'ADMIN' | null;
 
 export interface Farmer {
   id: string;

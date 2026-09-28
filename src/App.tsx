@@ -6,12 +6,12 @@ import { FpoDashboard } from './pages/fpo/Dashboard';
 import { OnboardFarmer } from './pages/fpo/OnboardFarmer';
 import { Pooling } from './pages/fpo/Pooling';
 import { Payouts } from './pages/fpo/Payouts';
-import { VerifierQueue } from './pages/verifier/Queue';
-import { Marketplace } from './pages/buyer/Marketplace';
-import { ContractBuilder } from './pages/buyer/ContractBuilder';
-import { Forecast } from './pages/buyer/Forecast';
-import { Wallet } from './pages/buyer/Wallet';
 import { AdminOverview } from './pages/admin/Overview';
+import { VerificationQueue } from './pages/admin/VerificationQueue';
+import { Marketplace } from './pages/datacentre/Marketplace';
+import { ContractBuilder } from './pages/datacentre/ContractBuilder';
+import { Forecast } from './pages/datacentre/Forecast';
+import { Wallet } from './pages/datacentre/Wallet';
 
 function App() {
   return (
@@ -26,17 +26,15 @@ function App() {
           <Route path="/fpo/pooling" element={<Pooling />} />
           <Route path="/fpo/payouts" element={<Payouts />} />
 
-          {/* Verifier Routes */}
-          <Route path="/verifier/queue" element={<VerifierQueue />} />
-
-          {/* Buyer Routes */}
-          <Route path="/buyer/marketplace" element={<Marketplace />} />
-          <Route path="/buyer/contract" element={<ContractBuilder />} />
-          <Route path="/buyer/forecast" element={<Forecast />} />
-          <Route path="/buyer/wallet" element={<Wallet />} />
+          {/* Datacentre Routes */}
+          <Route path="/datacentre/marketplace" element={<Marketplace />} />
+          <Route path="/datacentre/contract" element={<ContractBuilder />} />
+          <Route path="/datacentre/forecast" element={<Forecast />} />
+          <Route path="/datacentre/wallet" element={<Wallet />} />
 
           {/* Admin Routes */}
           <Route path="/admin/dashboard" element={<AdminOverview />} />
+          <Route path="/admin/verify" element={<VerificationQueue />} />
         </Route>
       </Routes>
     </BrowserRouter>

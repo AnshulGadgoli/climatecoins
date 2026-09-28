@@ -13,7 +13,7 @@ const ndviData = [
   { month: 'Jun', ndvi: 0.62 },
 ];
 
-export function VerifierQueue() {
+export function VerificationQueue() {
   const { projects, updateProjectStatus } = useStore();
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
@@ -82,8 +82,8 @@ export function VerifierQueue() {
   return (
     <div className="space-y-6">
       <h2 className="text-2xl font-heading text-primary">Verification Queue</h2>
-      <div className="bg-white rounded-xl border border-text/10 shadow-sm overflow-hidden">
-        <table className="w-full text-left text-sm">
+      <div className="bg-white rounded-xl border border-text/10 shadow-sm overflow-x-auto">
+        <table className="w-full text-left text-sm whitespace-nowrap">
           <thead className="bg-text/5 border-b border-text/10">
             <tr>
               <th className="p-4 font-medium text-text/70">Project Name</th>

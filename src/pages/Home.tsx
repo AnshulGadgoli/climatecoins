@@ -1,111 +1,134 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useStore } from '../store/useStore';
-import { Leaf, Users, ShieldCheck, Factory, ArrowRight } from 'lucide-react';
+import { Leaf, Users, Factory, ShieldCheck } from 'lucide-react';
+import { cn } from '../lib/utils';
 
 export function Home() {
   const { setRole } = useStore();
   const navigate = useNavigate();
+  const [activeTab, setActiveTab] = useState<'FPO' | 'DATACENTRE' | 'ADMIN'>('FPO');
+  const [loginId, setLoginId] = useState('');
 
-  const handleLogin = (role: 'FPO' | 'BUYER' | 'VERIFIER' | 'ADMIN') => {
-    setRole(role);
-    if (role === 'FPO') navigate('/fpo/dashboard');
-    else if (role === 'BUYER') navigate('/buyer/marketplace');
-    else if (role === 'VERIFIER') navigate('/verifier/queue');
-    else if (role === 'ADMIN') navigate('/admin/dashboard');
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!loginId.trim()) return;
+    
+    setRole(activeTab, loginId);
+    if (activeTab === 'FPO') navigate('/fpo/dashboard');
+    else if (activeTab === 'DATACENTRE') navigate('/datacentre/marketplace');
+    else if (activeTab === 'ADMIN') navigate('/admin/dashboard');
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       {/* Navbar */}
-      <header className="border-b border-text/10 bg-white">
+      <header className="border-b border-text/10 bg-white shrink-0">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Leaf className="text-primary w-6 h-6" />
             <h1 className="font-heading font-bold text-xl text-primary">ClimateCoins</h1>
           </div>
-          <div className="flex gap-4">
-            <button onClick={() => handleLogin('FPO')} className="text-sm font-medium hover:text-primary transition-colors">FPO Login</button>
-            <button onClick={() => handleLogin('BUYER')} className="text-sm font-medium hover:text-primary transition-colors">Corporate Login</button>
+          <div className="text-sm text-text/60 font-medium">
+            Verified Carbon Platform
           </div>
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto px-6 py-12">
-        {/* Hero */}
-        <div className="py-12 md:py-20 max-w-3xl">
-          <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl text-primary leading-tight mb-6">
-            Connecting Indian farmers to global carbon markets.
+      <main className="flex-1 flex flex-col lg:flex-row items-center max-w-6xl mx-auto w-full px-6 py-12 gap-12">
+        
+        {/* Hero Section */}
+        <div className="flex-1 space-y-8">
+          <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl text-primary leading-tight">
+            Connecting Indian farmers to global datacentres.
           </h2>
-          <p className="text-lg text-text/80 mb-8 max-w-2xl leading-relaxed">
-            ClimateCoins helps Farmer Producer Organisations (FPOs) aggregate sustainable practices, verify carbon credits digitally, and sell directly to corporate buyers like data centres. Predictable payouts for farmers, verified impact for companies.
+          <p className="text-lg text-text/80 max-w-xl leading-relaxed">
+            ClimateCoins helps Farmer Producer Organisations (FPOs) aggregate sustainable practices, verify carbon credits digitally, and sell forward contracts directly to datacentres to offset energy demand.
           </p>
-        </div>
-
-        {/* How it works strip */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-20">
-          <div className="bg-white p-6 rounded-lg border border-text/10 shadow-sm">
-            <div className="w-10 h-10 bg-primary/10 text-primary rounded-full flex items-center justify-center mb-4 font-bold">1</div>
-            <h3 className="font-semibold mb-2">Farmer Onboarding</h3>
-            <p className="text-sm text-text/70">FPOs onboard farmers and track sustainable practices like no-till and agroforestry.</p>
-          </div>
-          <div className="bg-white p-6 rounded-lg border border-text/10 shadow-sm">
-            <div className="w-10 h-10 bg-primary/10 text-primary rounded-full flex items-center justify-center mb-4 font-bold">2</div>
-            <h3 className="font-semibold mb-2">Digital MRV</h3>
-            <p className="text-sm text-text/70">Satellite data and ML estimate carbon potential and verify practices continuously.</p>
-          </div>
-          <div className="bg-white p-6 rounded-lg border border-text/10 shadow-sm">
-            <div className="w-10 h-10 bg-primary/10 text-primary rounded-full flex items-center justify-center mb-4 font-bold">3</div>
-            <h3 className="font-semibold mb-2">Verification</h3>
-            <p className="text-sm text-text/70">Independent verifiers review evidence to issue certified carbon credits.</p>
-          </div>
-          <div className="bg-white p-6 rounded-lg border border-text/10 shadow-sm">
-            <div className="w-10 h-10 bg-primary/10 text-primary rounded-full flex items-center justify-center mb-4 font-bold">4</div>
-            <h3 className="font-semibold mb-2">Corporate Offtake</h3>
-            <p className="text-sm text-text/70">Data centres buy forward contracts, ensuring predictable payouts for farmers.</p>
-          </div>
-        </div>
-
-        {/* Stats */}
-        <div className="bg-primary text-white rounded-xl p-8 mb-20 grid grid-cols-1 md:grid-cols-3 gap-8 divide-y md:divide-y-0 md:divide-x divide-white/20">
-          <div className="text-center md:text-left md:px-6">
-            <div className="text-3xl font-heading mb-1 tabular-nums">4,250+</div>
-            <div className="text-white/80 text-sm">Farmers Enrolled</div>
-          </div>
-          <div className="text-center md:text-left md:px-6">
-            <div className="text-3xl font-heading mb-1 tabular-nums">12,400</div>
-            <div className="text-white/80 text-sm">Hectares Under Management</div>
-          </div>
-          <div className="text-center md:text-left md:px-6">
-            <div className="text-3xl font-heading mb-1 tabular-nums">₹1.2 Cr</div>
-            <div className="text-white/80 text-sm">Paid to Farmers to Date</div>
+          
+          <div className="space-y-4 pt-4 border-t border-text/10">
+            <div className="flex items-start gap-4">
+              <div className="mt-1"><Users className="w-5 h-5 text-primary" /></div>
+              <div>
+                <h4 className="font-semibold mb-1">Farmer Onboarding</h4>
+                <p className="text-sm text-text/70">FPOs aggregate practices like agroforestry via digital MRV.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4">
+              <div className="mt-1"><ShieldCheck className="w-5 h-5 text-primary" /></div>
+              <div>
+                <h4 className="font-semibold mb-1">Verification</h4>
+                <p className="text-sm text-text/70">Satellite data and ML automatically evaluate eligibility and verify impact.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4">
+              <div className="mt-1"><Factory className="w-5 h-5 text-primary" /></div>
+              <div>
+                <h4 className="font-semibold mb-1">Datacentre Offtake</h4>
+                <p className="text-sm text-text/70">Datacentres purchase forward contracts, funding sustainable agriculture.</p>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Role Picker */}
-        <div className="bg-white rounded-xl border border-text/10 shadow-sm p-8 max-w-4xl mx-auto">
-          <h3 className="font-heading text-2xl mb-8 text-center">Interactive Demo: Choose a Role</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <button onClick={() => handleLogin('FPO')} className="flex flex-col items-center p-6 border border-text/10 rounded-lg hover:border-primary hover:bg-primary/5 transition-all text-center group">
-              <Users className="w-8 h-8 text-primary mb-3 group-hover:scale-110 transition-transform" />
-              <div className="font-semibold mb-1">FPO Manager</div>
-              <div className="text-xs text-text/60">Onboard & pool farmers</div>
+        {/* Login Box */}
+        <div className="w-full lg:w-[420px] bg-white rounded-xl border border-text/10 shadow-sm overflow-hidden shrink-0">
+          <div className="flex border-b border-text/10">
+            <button 
+              className={cn("flex-1 py-4 text-sm font-medium transition-colors text-center border-b-2", activeTab === 'FPO' ? "border-primary text-primary bg-primary/5" : "border-transparent text-text/60 hover:bg-black/5")}
+              onClick={() => setActiveTab('FPO')}
+            >
+              FPO
             </button>
-            <button onClick={() => handleLogin('VERIFIER')} className="flex flex-col items-center p-6 border border-text/10 rounded-lg hover:border-primary hover:bg-primary/5 transition-all text-center group">
-              <ShieldCheck className="w-8 h-8 text-primary mb-3 group-hover:scale-110 transition-transform" />
-              <div className="font-semibold mb-1">Verifier</div>
-              <div className="text-xs text-text/60">Review & approve projects</div>
+            <button 
+              className={cn("flex-1 py-4 text-sm font-medium transition-colors text-center border-b-2", activeTab === 'DATACENTRE' ? "border-primary text-primary bg-primary/5" : "border-transparent text-text/60 hover:bg-black/5")}
+              onClick={() => setActiveTab('DATACENTRE')}
+            >
+              Datacentre
             </button>
-            <button onClick={() => handleLogin('BUYER')} className="flex flex-col items-center p-6 border border-text/10 rounded-lg hover:border-accent hover:bg-accent/5 transition-all text-center group">
-              <Factory className="w-8 h-8 text-accent mb-3 group-hover:scale-110 transition-transform" />
-              <div className="font-semibold mb-1">Corporate Buyer</div>
-              <div className="text-xs text-text/60">Purchase carbon contracts</div>
+            <button 
+              className={cn("flex-1 py-4 text-sm font-medium transition-colors text-center border-b-2", activeTab === 'ADMIN' ? "border-primary text-primary bg-primary/5" : "border-transparent text-text/60 hover:bg-black/5")}
+              onClick={() => setActiveTab('ADMIN')}
+            >
+              Admin
             </button>
-            <button onClick={() => handleLogin('ADMIN')} className="flex flex-col items-center p-6 border border-text/10 rounded-lg hover:border-text/30 hover:bg-black/5 transition-all text-center group">
-              <Leaf className="w-8 h-8 text-text/70 mb-3 group-hover:scale-110 transition-transform" />
-              <div className="font-semibold mb-1">Admin</div>
-              <div className="text-xs text-text/60">Platform overview</div>
-            </button>
+          </div>
+          
+          <div className="p-8">
+            <h3 className="font-heading text-2xl mb-2">
+              {activeTab === 'FPO' && "FPO Login"}
+              {activeTab === 'DATACENTRE' && "Datacentre Login"}
+              {activeTab === 'ADMIN' && "Admin Portal"}
+            </h3>
+            <p className="text-sm text-text/60 mb-6">
+              {activeTab === 'FPO' && "Enter your registered FPO ID to manage farmers and pools."}
+              {activeTab === 'DATACENTRE' && "Access carbon marketplaces and price forecasting."}
+              {activeTab === 'ADMIN' && "Review platform stats and verification queues."}
+            </p>
+
+            <form onSubmit={handleLogin} className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-text/80 mb-1">
+                  {activeTab === 'FPO' ? "FPO ID (e.g., fpo-1)" : 
+                   activeTab === 'DATACENTRE' ? "Corporate ID or Email" : "Admin Username"}
+                </label>
+                <input 
+                  type="text" 
+                  required
+                  value={loginId}
+                  onChange={(e) => setLoginId(e.target.value)}
+                  placeholder={activeTab === 'FPO' ? "fpo-1" : "Enter ID"}
+                  className="w-full p-2.5 border border-text/20 rounded-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
+                />
+              </div>
+              
+              <button type="submit" className="w-full py-2.5 bg-primary text-white rounded-md font-medium hover:bg-primary/90 transition-colors">
+                Sign In
+              </button>
+              <div className="text-xs text-text/50 text-center mt-4">
+                *This is a hackathon prototype. Enter any string to log in.
+              </div>
+            </form>
           </div>
         </div>
       </main>

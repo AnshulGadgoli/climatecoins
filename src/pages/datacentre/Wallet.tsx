@@ -30,9 +30,9 @@ export function Wallet() {
         </div>
       </div>
 
-      <div className="bg-white rounded-xl border border-text/10 shadow-sm overflow-hidden">
+      <div className="bg-white rounded-xl border border-text/10 shadow-sm overflow-x-auto">
         <div className="p-4 border-b border-text/10 bg-text/5 font-medium">Transaction Ledger</div>
-        <table className="w-full text-left text-sm">
+        <table className="w-full text-left text-sm whitespace-nowrap">
           <thead className="border-b border-text/10">
             <tr>
               <th className="p-4 font-medium text-text/70">Tx Hash / ID</th>

@@ -18,8 +18,8 @@ export function Payouts() {
         </button>
       </div>
 
-      <div className="bg-white rounded-xl border border-text/10 shadow-sm overflow-hidden">
-        <table className="w-full text-left text-sm">
+      <div className="bg-white rounded-xl border border-text/10 shadow-sm overflow-x-auto">
+        <table className="w-full text-left text-sm whitespace-nowrap">
           <thead className="bg-text/5 border-b border-text/10">
             <tr>
               <th className="p-4 font-medium text-text/70">Farmer Name</th>

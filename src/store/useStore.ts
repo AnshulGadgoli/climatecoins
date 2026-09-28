@@ -4,9 +4,10 @@ import { MOCK_FPOS, MOCK_PROJECTS, generateMockFarmers } from '../lib/mockData';
 
 interface AppState {
   role: UserRole;
-  setRole: (role: UserRole) => void;
-  language: 'en' | 'hi';
-  toggleLanguage: () => void;
+  authId: string | null;
+  setRole: (role: UserRole, id?: string) => void;
+  language: string;
+  setLanguage: (lang: string) => void;
   
   farmers: Farmer[];
   addFarmer: (farmer: Farmer) => void;
@@ -22,9 +23,10 @@ interface AppState {
 
 export const useStore = create<AppState>((set) => ({
   role: null,
-  setRole: (role) => set({ role }),
+  authId: null,
+  setRole: (role, id) => set({ role, authId: id || null }),
   language: 'en',
-  toggleLanguage: () => set((state) => ({ language: state.language === 'en' ? 'hi' : 'en' })),
+  setLanguage: (lang) => set({ language: lang }),
   
   farmers: generateMockFarmers(),
   addFarmer: (farmer) => set((state) => ({ farmers: [farmer, ...state.farmers] })),
