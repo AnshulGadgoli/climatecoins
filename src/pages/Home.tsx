@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useStore } from '../store/useStore';
 import { Leaf, Users, Factory, ShieldCheck } from 'lucide-react';
 import { cn } from '../lib/utils';
@@ -9,10 +9,11 @@ export function Home() {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<'FPO' | 'DATACENTRE' | 'ADMIN'>('FPO');
   const [loginId, setLoginId] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!loginId.trim()) return;
+    if (!loginId.trim() || !password.trim()) return;
     
     setRole(activeTab, loginId);
     if (activeTab === 'FPO') navigate('/fpo/dashboard');
@@ -25,10 +26,10 @@ export function Home() {
       {/* Navbar */}
       <header className="border-b border-text/10 bg-white shrink-0">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
             <Leaf className="text-primary w-6 h-6" />
             <h1 className="font-heading font-bold text-xl text-primary">ClimateCoins</h1>
-          </div>
+          </Link>
           <div className="text-sm text-text/60 font-medium">
             Verified Carbon Platform
           </div>
@@ -121,8 +122,22 @@ export function Home() {
                   className="w-full p-2.5 border border-text/20 rounded-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
                 />
               </div>
+
+              <div>
+                <label className="block text-sm font-medium text-text/80 mb-1">
+                  Password
+                </label>
+                <input 
+                  type="password" 
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••"
+                  className="w-full p-2.5 border border-text/20 rounded-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
+                />
+              </div>
               
-              <button type="submit" className="w-full py-2.5 bg-primary text-white rounded-md font-medium hover:bg-primary/90 transition-colors">
+              <button type="submit" className="w-full py-2.5 bg-primary text-white rounded-md font-medium hover:bg-primary/90 transition-colors mt-2">
                 Sign In
               </button>
               <div className="text-xs text-text/50 text-center mt-4">

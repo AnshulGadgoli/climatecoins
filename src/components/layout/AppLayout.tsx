@@ -71,10 +71,10 @@ export function AppLayout() {
       )}>
         <div>
           <div className="p-6 flex items-center justify-between">
-            <div className="flex items-center gap-2">
+            <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
               <Leaf className="text-primary w-6 h-6" />
               <h1 className="font-heading font-bold text-xl text-primary tracking-tight">ClimateCoins</h1>
-            </div>
+            </Link>
             <button className="md:hidden text-text/70 hover:text-text" onClick={() => setIsMobileOpen(false)}>
               <X className="w-5 h-5" />
             </button>
@@ -139,10 +139,10 @@ export function AppLayout() {
       <div className="flex-1 flex flex-col min-w-0 h-screen overflow-hidden">
         {/* Mobile Header */}
         <header className="md:hidden flex items-center justify-between p-4 bg-white border-b border-text/10 shrink-0">
-          <div className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
             <Leaf className="text-primary w-5 h-5" />
             <h1 className="font-heading font-bold text-lg text-primary tracking-tight">ClimateCoins</h1>
-          </div>
+          </Link>
           <button onClick={() => setIsMobileOpen(true)} className="p-2 text-text/70 hover:bg-black/5 rounded-md">
             <Menu className="w-5 h-5" />
           </button>
