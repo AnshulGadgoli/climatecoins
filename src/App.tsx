@@ -29,11 +29,10 @@ function App() {
           {/* Datacentre Routes */}
           <Route path="/datacentre/marketplace" element={<Marketplace />} />
           <Route path="/datacentre/contract" element={<ContractBuilder />} />
-          <Route path="/datacentre/forecast" element={<Forecast />} />
-          <Route path="/datacentre/wallet" element={<Wallet />} />
 
           {/* Admin Routes */}
           <Route path="/admin/dashboard" element={<AdminOverview />} />
+          <Route path="/admin/forecast" element={<Forecast />} />
           <Route path="/admin/verify" element={<VerificationQueue />} />
         </Route>
       </Routes>

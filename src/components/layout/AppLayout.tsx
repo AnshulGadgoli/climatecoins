@@ -43,11 +43,10 @@ export function AppLayout() {
     DATACENTRE: [
       { name: 'Marketplace', path: '/datacentre/marketplace', icon: ShoppingCart },
       { name: 'Forward Contract', path: '/datacentre/contract', icon: FileText },
-      { name: 'Price Forecast', path: '/datacentre/forecast', icon: TrendingUp },
-      { name: 'Carbon Wallet', path: '/datacentre/wallet', icon: Layers },
     ],
     ADMIN: [
       { name: 'Overview', path: '/admin/dashboard', icon: LayoutDashboard },
+      { name: 'Price Forecast', path: '/admin/forecast', icon: TrendingUp },
       { name: 'Verification Queue', path: '/admin/verify', icon: ShieldCheck },
     ]
   };
