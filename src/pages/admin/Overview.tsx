@@ -65,39 +65,45 @@ export function AdminOverview() {
         </div>
 
         <div className="bg-white p-6 rounded-xl border border-text/10 shadow-sm flex flex-col">
-          <h3 className="font-medium mb-4">Revenue Split</h3>
+          <h3 className="font-medium mb-4">Datacentre Partnerships</h3>
           <div className="space-y-4 flex-1">
-            <div>
-              <div className="flex justify-between text-sm mb-1">
-                <span className="text-text/70">Sales Commission (5%)</span>
-                <span className="font-medium">₹8.5 L</span>
+            <div className="flex justify-between items-center p-3 bg-text/5 rounded-lg border border-text/10">
+              <div>
+                <div className="font-medium">TechCorp Data Center</div>
+                <div className="text-xs text-text/60">Hyderabad (Tier IV)</div>
               </div>
-              <div className="w-full bg-text/5 rounded-full h-2">
-                <div className="bg-primary h-2 rounded-full" style={{ width: '60%' }}></div>
-              </div>
-            </div>
-            <div>
-              <div className="flex justify-between text-sm mb-1">
-                <span className="text-text/70">MRV API Licensing</span>
-                <span className="font-medium">₹3.2 L</span>
-              </div>
-              <div className="w-full bg-text/5 rounded-full h-2">
-                <div className="bg-accent h-2 rounded-full" style={{ width: '25%' }}></div>
+              <div className="text-right">
+                <div className="font-medium text-sm text-primary">2,500 tCO2e/yr</div>
+                <div className="text-xs text-text/50">Active Forward Contract</div>
               </div>
             </div>
-            <div>
-              <div className="flex justify-between text-sm mb-1">
-                <span className="text-text/70">Verification Facilitation</span>
-                <span className="font-medium">₹2.5 L</span>
+            
+            <div className="flex justify-between items-center p-3 bg-text/5 rounded-lg border border-text/10">
+              <div>
+                <div className="font-medium">CloudHost India</div>
+                <div className="text-xs text-text/60">Pune (Tier III)</div>
               </div>
-              <div className="w-full bg-text/5 rounded-full h-2">
-                <div className="bg-blue-500 h-2 rounded-full" style={{ width: '15%' }}></div>
+              <div className="text-right">
+                <div className="font-medium text-sm text-primary">1,200 tCO2e/yr</div>
+                <div className="text-xs text-text/50">Spot Buyer</div>
+              </div>
+            </div>
+
+            <div className="flex justify-between items-center p-3 bg-text/5 rounded-lg border border-text/10">
+              <div>
+                <div className="font-medium">GreenServe AWS</div>
+                <div className="text-xs text-text/60">Mumbai (Tier IV)</div>
+              </div>
+              <div className="text-right">
+                <div className="font-medium text-sm text-yellow-600">Pending Setup</div>
+                <div className="text-xs text-text/50">Evaluating Pipeline</div>
               </div>
             </div>
           </div>
           
-          <div className="mt-6 pt-4 border-t border-text/10 text-xs text-text/50">
-            * Revenue is reinvested into expanding the satellite MRV capabilities and subsidizing initial farmer soil testing.
+          <div className="mt-6 pt-4 border-t border-text/10 text-xs text-text/50 flex justify-between">
+            <span>Total Datacentres: 3</span>
+            <span>Total Locked Volume: 3,700 tCO2e</span>
           </div>
         </div>
       </div>

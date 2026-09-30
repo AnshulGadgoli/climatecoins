@@ -30,6 +30,40 @@ export function Payouts() {
             </tr>
           </thead>
           <tbody className="divide-y divide-text/5">
+            {/* Mock Examples for Demo */}
+            <tr className="hover:bg-text/5 transition-colors">
+              <td className="p-4 font-medium">Bhavani Prasad</td>
+              <td className="p-4 text-text/70">Anantapur</td>
+              <td className="p-4 tabular-nums">4.2 ha</td>
+              <td className="p-4 tabular-nums font-medium text-green-600">₹15,750</td>
+              <td className="p-4">
+                <span className="px-2 py-1 bg-green-100 text-green-800 rounded text-xs font-medium">
+                  Processed
+                </span>
+              </td>
+            </tr>
+            <tr className="hover:bg-text/5 transition-colors">
+              <td className="p-4 font-medium">Laxmi Narayan</td>
+              <td className="p-4 text-text/70">Kurnool</td>
+              <td className="p-4 tabular-nums">1.8 ha</td>
+              <td className="p-4 tabular-nums font-medium text-green-600">₹6,750</td>
+              <td className="p-4">
+                <span className="px-2 py-1 bg-green-100 text-green-800 rounded text-xs font-medium">
+                  Processed
+                </span>
+              </td>
+            </tr>
+            <tr className="hover:bg-text/5 transition-colors">
+              <td className="p-4 font-medium">Venkat Reddy</td>
+              <td className="p-4 text-text/70">Kadapa</td>
+              <td className="p-4 tabular-nums">3.5 ha</td>
+              <td className="p-4 tabular-nums font-medium">₹13,125</td>
+              <td className="p-4">
+                <span className="px-2 py-1 bg-yellow-100 text-yellow-800 rounded text-xs font-medium">
+                  Pending Bank Sync
+                </span>
+              </td>
+            </tr>
             {fpoFarmers.map((f) => (
               <tr key={f.id} className="hover:bg-text/5 transition-colors">
                 <td className="p-4 font-medium">{f.name}</td>
@@ -45,13 +79,6 @@ export function Payouts() {
                 </td>
               </tr>
             ))}
-            {fpoFarmers.length === 0 && (
-              <tr>
-                <td colSpan={5} className="p-8 text-center text-text/50">
-                  No payouts generated yet. Pool and verify farmers first.
-                </td>
-              </tr>
-            )}
           </tbody>
         </table>
       </div>

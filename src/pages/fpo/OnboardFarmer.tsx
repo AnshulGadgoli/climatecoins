@@ -6,16 +6,17 @@ import { cn } from '../../lib/utils';
 export function OnboardFarmer() {
 
 
-  // Form State
-  const [formData, setFormData] = useState({
-    name: '', fatherSpouse: '', village: '', mandal: '', district: '', phone: '', aadhaar: '', bankUpi: '',
-    surveyNo: '', ownership: 'OWN', leaseYears: '', area: '', soilType: '', soilPh: '', organicCarbon: '',
-    irrigation: '', rainfall: '', currentCrop: '', previousCrop: '', rotation: 'Yes', fertilizer: '',
-    tillage: '', residue: '', manure: '', coverCrop: '', landUseNow: '', landUse5yr: '', treeCover5yr: '',
-    forest2000: 'No', income: ''
-  });
-
+  const { addFarmer } = useStore();
   const [submitted, setSubmitted] = useState(false);
+
+  // Form State with Dummy Defaults
+  const [formData, setFormData] = useState({
+    name: 'Ramesh Kumar', fatherSpouse: 'Suresh Kumar', village: 'Palghar', mandal: 'Palghar', district: 'Palghar', phone: '9876543210', aadhaar: '8912', bankUpi: 'ramesh@upi',
+    surveyNo: 'SUR-782', ownership: 'OWN', leaseYears: '0', area: '2.5', soilType: 'Black Cotton', soilPh: '6.8', organicCarbon: '0.8',
+    irrigation: 'Drip', rainfall: 'Medium', currentCrop: 'Cotton', previousCrop: 'Soybean', rotation: 'Yes', fertilizer: 'Urea 30kg',
+    tillage: 'Reduced', residue: 'Incorporated', manure: 'FYM', coverCrop: 'Cowpea', landUseNow: 'Agriculture', landUse5yr: 'Agriculture', treeCover5yr: '5',
+    forest2000: 'No', income: 'Low'
+  });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -23,18 +24,37 @@ export function OnboardFarmer() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Add to global store so it shows on Dashboard
+    addFarmer({
+      id: `farmer-${Date.now()}`,
+      fpoId: 'fpo-1', // Mock FPO ID
+      name: formData.name,
+      status: 'PENDING',
+      landAreaHa: parseFloat(formData.area),
+      practices: [formData.tillage, formData.residue].filter(Boolean),
+      estimatedTco2e: parseFloat(formData.area) * 2.5, // dummy calculation
+      village: formData.village,
+      district: formData.district,
+      state: 'Maharashtra',
+      crop: formData.currentCrop,
+      soilType: formData.soilType,
+      socPercent: parseFloat(formData.organicCarbon),
+      ph: parseFloat(formData.soilPh)
+    });
+
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);
       // Reset form
       setFormData({
-        name: '', fatherSpouse: '', village: '', mandal: '', district: '', phone: '', aadhaar: '', bankUpi: '',
-        surveyNo: '', ownership: 'OWN', leaseYears: '', area: '', soilType: '', soilPh: '', organicCarbon: '',
-        irrigation: '', rainfall: '', currentCrop: '', previousCrop: '', rotation: 'Yes', fertilizer: '',
-        tillage: '', residue: '', manure: '', coverCrop: '', landUseNow: '', landUse5yr: '', treeCover5yr: '',
-        forest2000: 'No', income: ''
+        name: 'Sita Devi', fatherSpouse: 'Ram Singh', village: 'Nashik', mandal: 'Nashik', district: 'Nashik', phone: '9123456789', aadhaar: '4421', bankUpi: 'sita@sbi',
+        surveyNo: 'SUR-991', ownership: 'OWN', leaseYears: '0', area: '1.2', soilType: 'Red Soil', soilPh: '7.1', organicCarbon: '1.1',
+        irrigation: 'Borewell', rainfall: 'Low', currentCrop: 'Maize', previousCrop: 'Wheat', rotation: 'Yes', fertilizer: 'DAP 20kg',
+        tillage: 'No-Till', residue: 'Surface Retention', manure: 'Vermicompost', coverCrop: 'Legumes', landUseNow: 'Agriculture', landUse5yr: 'Agriculture', treeCover5yr: '2',
+        forest2000: 'No', income: 'Low'
       });
-    }, 3000);
+    }, 2000);
   };
 
   if (submitted) {
