@@ -23,7 +23,7 @@ export function ContractBuilder() {
       status: 'PENDING'
     });
     alert('Forward contract executed! Funds are held in escrow for FPOs.');
-    navigate('/buyer/wallet');
+    navigate('/datacentre/marketplace');
   };
 
   return (

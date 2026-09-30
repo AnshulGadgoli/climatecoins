@@ -61,7 +61,7 @@ export function Marketplace() {
               </div>
               
               <button 
-                onClick={() => navigate('/buyer/contract')}
+                onClick={() => navigate('/datacentre/contract')}
                 className="w-full mt-auto py-2 bg-text/5 text-text hover:bg-primary hover:text-white rounded-md font-medium text-sm transition-colors"
               >
                 Buy Forward Contract

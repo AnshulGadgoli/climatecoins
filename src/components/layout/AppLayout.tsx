@@ -37,7 +37,6 @@ export function AppLayout() {
     FPO: [
       { name: 'Dashboard', path: '/fpo/dashboard', icon: LayoutDashboard },
       { name: 'Onboard Farmer', path: '/fpo/onboard', icon: UserPlus },
-      { name: 'Project Pooling', path: '/fpo/pooling', icon: Layers },
       { name: 'Payouts', path: '/fpo/payouts', icon: FileText },
     ],
     DATACENTRE: [
@@ -46,6 +45,7 @@ export function AppLayout() {
     ],
     ADMIN: [
       { name: 'Overview', path: '/admin/dashboard', icon: LayoutDashboard },
+      { name: 'FPO Network Map', path: '/admin/pooling', icon: Layers },
       { name: 'Price Forecast', path: '/admin/forecast', icon: TrendingUp },
       { name: 'Verification Queue', path: '/admin/verify', icon: ShieldCheck },
     ]

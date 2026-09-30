@@ -4,9 +4,7 @@ import { Users, FileText, CheckCircle, Plus } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
 export function OnboardFarmer() {
-  const [groups, setGroups] = useState<{id: string, name: string}[]>([{ id: 'g1', name: 'Alpha Cluster' }]);
-  const [newGroupName, setNewGroupName] = useState('');
-  const [selectedGroup, setSelectedGroup] = useState('g1');
+
 
   // Form State
   const [formData, setFormData] = useState({
@@ -18,16 +16,6 @@ export function OnboardFarmer() {
   });
 
   const [submitted, setSubmitted] = useState(false);
-
-  const handleCreateGroup = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (newGroupName.trim()) {
-      const newGroup = { id: `g${Date.now()}`, name: newGroupName };
-      setGroups([...groups, newGroup]);
-      setSelectedGroup(newGroup.id);
-      setNewGroupName('');
-    }
-  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -56,7 +44,7 @@ export function OnboardFarmer() {
           <CheckCircle className="w-8 h-8" />
         </div>
         <h2 className="text-2xl font-heading text-primary mb-2">Farmer Added Successfully</h2>
-        <p className="text-text/70 mb-8">The farmer and farm details have been saved to {groups.find(g => g.id === selectedGroup)?.name}.</p>
+        <p className="text-text/70 mb-8">The farmer and farm details have been saved successfully.</p>
         <button onClick={() => setSubmitted(false)} className="px-6 py-2 bg-primary text-white rounded-md font-medium">
           Add Another Farmer
         </button>
@@ -73,41 +61,7 @@ export function OnboardFarmer() {
         </div>
       </div>
 
-      {/* Group Management */}
-      <div className="bg-white p-6 rounded-xl border border-text/10 shadow-sm space-y-6">
-        <h3 className="font-medium flex items-center gap-2 border-b border-text/10 pb-3">
-          <Users className="w-5 h-5 text-primary" /> Group Selection
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label className="block text-sm font-medium text-text/80 mb-2">Select Target Group</label>
-            <select 
-              value={selectedGroup}
-              onChange={(e) => setSelectedGroup(e.target.value)}
-              className="w-full p-2.5 border border-text/20 rounded-md focus:outline-none focus:border-primary"
-            >
-              {groups.map(g => (
-                <option key={g.id} value={g.id}>{g.name}</option>
-              ))}
-            </select>
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-text/80 mb-2">Or Create New Group</label>
-            <form onSubmit={handleCreateGroup} className="flex gap-2">
-              <input 
-                type="text" 
-                value={newGroupName}
-                onChange={(e) => setNewGroupName(e.target.value)}
-                placeholder="New group name..."
-                className="flex-1 p-2.5 border border-text/20 rounded-md focus:outline-none focus:border-primary"
-              />
-              <button type="submit" className="px-4 py-2.5 bg-text/5 hover:bg-text/10 text-text rounded-md font-medium transition-colors flex items-center gap-2">
-                <Plus className="w-4 h-4" /> Create
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
+
 
       {/* Farmer Form */}
       <form onSubmit={handleSubmit} className="space-y-6">

@@ -4,7 +4,7 @@ import { AppLayout } from './components/layout/AppLayout';
 import { Home } from './pages/Home';
 import { FpoDashboard } from './pages/fpo/Dashboard';
 import { OnboardFarmer } from './pages/fpo/OnboardFarmer';
-import { Pooling } from './pages/fpo/Pooling';
+import { Pooling } from './pages/admin/Pooling';
 import { Payouts } from './pages/fpo/Payouts';
 import { AdminOverview } from './pages/admin/Overview';
 import { VerificationQueue } from './pages/admin/VerificationQueue';
@@ -23,7 +23,6 @@ function App() {
           {/* FPO Routes */}
           <Route path="/fpo/dashboard" element={<FpoDashboard />} />
           <Route path="/fpo/onboard" element={<OnboardFarmer />} />
-          <Route path="/fpo/pooling" element={<Pooling />} />
           <Route path="/fpo/payouts" element={<Payouts />} />
 
           {/* Datacentre Routes */}
@@ -32,6 +31,7 @@ function App() {
 
           {/* Admin Routes */}
           <Route path="/admin/dashboard" element={<AdminOverview />} />
+          <Route path="/admin/pooling" element={<Pooling />} />
           <Route path="/admin/forecast" element={<Forecast />} />
           <Route path="/admin/verify" element={<VerificationQueue />} />
         </Route>
